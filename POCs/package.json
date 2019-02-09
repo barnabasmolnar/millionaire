@@ -1,0 +1,18 @@
+{
+  "name": "POCs",
+  "version": "1.0.0",
+  "description": "Anything from sketches, ideas, individual component concepts can be found here.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel card/index.html",
+    "devPrizePool": "parcel prizepool/prizepool.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.11.0",
+    "tailwindcss": "^0.7.3"
+  }
+}

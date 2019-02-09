@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Card POC</title>
+        <link rel="stylesheet" href="main.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    </head>
+    <body class="bg-grey-lighter">
+        <div class="container mx-auto">
+            <div
+                class="max-w-md mx-auto my-6 shadow-md rounded-lg bg-white overflow-hidden border-t-4 border-grey-dark"
+            >
+                <div class="px-4 py-12 sm:p-12">
+                    <p class="text-2xl text-center mb-12">
+                        What character was once considered to be the 27th letter
+                        of the alphabet?
+                    </p>
+                    <form class="px-12">
+                        <div class="my-4">
+                            <input type="radio" name="answer" id="answer-1" />
+                            <label
+                                class="btn btn-grey block text-center break-words overflow-hidden"
+                                for="answer-1"
+                                >Ampersand</label
+                            >
+                        </div>
+                        <div class="my-4">
+                            <input type="radio" name="answer" id="answer-2" />
+                            <label
+                                class="btn btn-grey block text-center break-words overflow-hidden"
+                                for="answer-2"
+                                >Interrobang</label
+                            >
+                        </div>
+                        <div class="my-4">
+                            <input type="radio" name="answer" id="answer-3" />
+                            <label
+                                class="btn btn-grey block text-center break-words overflow-hidden"
+                                for="answer-3"
+                                >Tilde</label
+                            >
+                        </div>
+                        <div class="my-4">
+                            <input type="radio" name="answer" id="answer-4" />
+                            <label
+                                class="btn btn-grey block text-center break-words overflow-hidden"
+                                for="answer-4"
+                                >Pilcrow</label
+                            >
+                        </div>
+                    </form>
+                </div>
+                <div class="bg-grey-lightest px-4 sm:px-12 py-6">
+                    <div class="flex justify-between pb-6">
+                        <div>
+                            <i class="fas fa-heartbeat text-grey-dark mr-2"></i>
+                            <span class="text-grey-dark font-bold">Lifelines</span>
+                        </div>
+                        <button>
+                            <i class="fas fa-question-circle text-grey mr-1 text-sm"></i>
+                            <span class="text-grey text-sm">Help</span>
+                        </button>
+                    </div>
+                    <div class="sm:flex justify-between py-6 text-sm -mx-4">
+                        <div class="my-4 sm:my-0 px-4 flex-1">
+                            <button class="w-full btn btn-grey-light py-3 px-5 rounded-full focus:outline-none focus:shadow-outline">
+                                <div class="bg-grey-lightest rounded-full mr-2 w-8 h-8 inline-flex justify-center items-center">
+                                    <i class="fas fa-percentage text-grey-dark"></i>
+                                </div>
+                                <span class="text-xs md:text-sm">50/50</span>
+                            </button>
+                        </div>
+                        <div class="my-4 sm:my-0 px-4 flex-1">
+                            <button class="w-full btn btn-grey-light py-3 px-5 rounded-full focus:outline-none focus:shadow-outline">
+                                <div class="bg-grey-lightest rounded-full mr-2 w-8 h-8 inline-flex justify-center items-center">
+                                    <i class="far fa-chart-bar text-grey-dark"></i>
+                                </div>
+                                <span class="text-xs md:text-sm">Audience</span>
+                            </button>
+                        </div>
+                        <div class="my-4 sm:my-0 px-4 flex-1">
+                            <button class="w-full btn btn-grey-light py-3 px-5 rounded-full focus:outline-none focus:shadow-outline cursor-not-allowed opacity-50" disabled>
+                                <div class="bg-grey-lightest rounded-full mr-2 w-8 h-8 inline-flex justify-center items-center">
+                                    <i class="fas fa-percentage text-grey-dark"></i>
+                                </div>
+                                <span class="text-xs md:text-sm">50/50</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

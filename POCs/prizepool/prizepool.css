@@ -1,0 +1,9 @@
+@tailwind preflight;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.rotate-45 {
+    transform: rotate(45deg);
+}
