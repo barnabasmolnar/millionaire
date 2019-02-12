@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { SET_CATEGORIES } from "../actions";
+import { SET_CATEGORIES, SET_QUESTIONS } from "../actions";
 
 const categories = (state = [], action) => {
     switch (action.type) {
@@ -10,8 +10,18 @@ const categories = (state = [], action) => {
     }
 };
 
+const questions = (state = [], action) => {
+    switch (action.type) {
+        case SET_QUESTIONS:
+            return action.questions;
+        default:
+            return state;
+    }
+}
+
 const reducers = combineReducers({
-    categories
+    categories,
+    questions
 });
 
 export default reducers;

@@ -6,13 +6,14 @@ import App from "./App";
 import reducers from "./reducers";
 import thunk from "redux-thunk";
 import * as serviceWorker from "./serviceWorker";
-import { fetchCategories } from "./actions";
+import { fetchCategories, fetchQuestions } from "./actions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 // store.dispatch(fetchCategories());
+// store.dispatch(fetchQuestions());
 
 ReactDOM.render(
     <Provider store={store}>
