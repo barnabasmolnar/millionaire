@@ -2,7 +2,8 @@ import { getQuestions, getCategories } from "../helpers/helpers_api";
 
 // Actions constants
 export const SET_CATEGORIES = "SET_CATEGORIES";
-export const SET_QUESTIONS = "SET_QUESTIONS";
+export const START_GAME = "START_GAME";
+export const SUBMIT_GUESS = "SUBMIT_GUESS";
 
 // Action creators
 export const setCategories = categories => ({
@@ -10,9 +11,14 @@ export const setCategories = categories => ({
     categories
 });
 
-export const setQuestions = questions => ({
-    type: SET_QUESTIONS,
+export const startGame = questions => ({
+    type: START_GAME,
     questions
+});
+
+export const submitGuess = guess => ({
+    type: SUBMIT_GUESS,
+    guess
 });
 
 // Async
@@ -23,5 +29,5 @@ export const fetchCategories = () => dispatch =>
 
 export const fetchQuestions = category => dispatch =>
     getQuestions(category)
-        .then(questions => dispatch(setQuestions(questions)))
+        .then(questions => dispatch(startGame(questions)))
         .catch(console.error);
