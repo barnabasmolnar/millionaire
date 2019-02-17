@@ -1,5 +1,11 @@
 import { combineReducers } from "redux";
 import { SET_CATEGORIES, START_GAME, SUBMIT_GUESS } from "../actions";
+import {
+    HAS_GUESSED_WRONG,
+    HAS_BECOME_A_MILLIONAIRE,
+    initialGameState,
+    IN_PROGRESS
+} from "../utils/gameLogic";
 
 const categories = (state = [], action) => {
     switch (action.type) {
@@ -8,17 +14,6 @@ const categories = (state = [], action) => {
         default:
             return state;
     }
-};
-
-const YET_TO_START = "YET_TO_START";
-const IN_PROGRESS = "IN_PROGRESS";
-const HAS_ENDED = "HAS_ENDED";
-const HAS_BECOME_A_MILLIONAIRE = "HAS_BECOME_A_MILLIONAIRE";
-
-const initialGameState = {
-    questions: [],
-    currentQuestionNum: 0,
-    stateOfGame: YET_TO_START
 };
 
 const gameState = (state = initialGameState, action) => {
@@ -30,7 +25,7 @@ const gameState = (state = initialGameState, action) => {
                 stateOfGame: IN_PROGRESS
             };
         case SUBMIT_GUESS:
-            const [questions, currentQuestionNum] = state;
+            let [questions, currentQuestionNum] = state;
             const isOnLastQuestion =
                 questions.length === currentQuestionNum + 1;
             const isCorrect =
@@ -42,7 +37,7 @@ const gameState = (state = initialGameState, action) => {
             }
 
             if (!isCorrect) {
-                return { ...state, stateOfGame: HAS_ENDED };
+                return { ...state, stateOfGame: HAS_GUESSED_WRONG };
             } else if (isCorrect && isOnLastQuestion) {
                 return { ...state, stateOfGame: HAS_BECOME_A_MILLIONAIRE };
             } else {
