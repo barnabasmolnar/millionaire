@@ -2,7 +2,7 @@
 export const YET_TO_START = "YET_TO_START";
 export const IN_PROGRESS = "IN_PROGRESS";
 export const HAS_GUESSED_WRONG = "HAS_GUESSED_WRONG";
-export const HAS_STOPPED = "HAS_STOPPED";
+export const HAS_CASHED_OUT = "HAS_CASHED_OUT";
 export const HAS_BECOME_A_MILLIONAIRE = "HAS_BECOME_A_MILLIONAIRE";
 
 // New game state
@@ -33,7 +33,7 @@ const prizePool = [
 
 // How many prizes do we have per bracket?
 // In other words, every N-th question is a guaranteed prize
-const prizesPerBracket = 5;
+export const prizesPerBracket = 5;
 
 // A function that calculates the appropriate prize
 // based on the state of the game
@@ -41,7 +41,7 @@ export const calculatePrize = (questionNum, stateOfGame) => {
     switch (stateOfGame) {
         case HAS_BECOME_A_MILLIONAIRE:
             return prizePool[prizePool.length - 1];
-        case HAS_STOPPED:
+        case HAS_CASHED_OUT:
             return prizePool[questionNum - 1];
         case HAS_GUESSED_WRONG:
             // some modular arithmetic to help determine the correct guaranteed prize

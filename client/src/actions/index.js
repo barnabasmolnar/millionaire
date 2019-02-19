@@ -4,6 +4,8 @@ import { getQuestions, getCategories } from "../helpers/helpers_api";
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const START_GAME = "START_GAME";
 export const SUBMIT_GUESS = "SUBMIT_GUESS";
+export const CASH_OUT = "CASH_OUT";
+export const USE_LIFELINE = "USE_LIFELINE";
 
 // Action creators
 export const setCategories = categories => ({
@@ -19,6 +21,13 @@ export const startGame = questions => ({
 export const submitGuess = guess => ({
     type: SUBMIT_GUESS,
     guess
+});
+
+export const cashOut = () => ({ type: CASH_OUT });
+
+export const useLifeline = lifeline => ({
+    type: USE_LIFELINE,
+    lifeline
 });
 
 // Async
