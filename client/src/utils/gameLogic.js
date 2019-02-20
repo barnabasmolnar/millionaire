@@ -51,3 +51,6 @@ export const calculatePrize = (questionNum, stateOfGame) => {
             return 0;
     }
 }
+
+// Lifeline constants
+export const FIFTY_FIFTY = "FIFTY_FIFTY";

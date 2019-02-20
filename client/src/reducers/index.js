@@ -1,13 +1,21 @@
 import { combineReducers } from "redux";
-import { SET_CATEGORIES, START_GAME, SUBMIT_GUESS, CASH_OUT } from "../actions";
+import {
+    SET_CATEGORIES,
+    START_GAME,
+    SUBMIT_GUESS,
+    CASH_OUT,
+    USE_LIFELINE
+} from "../actions";
 import {
     HAS_GUESSED_WRONG,
     HAS_BECOME_A_MILLIONAIRE,
     initialGameState,
     IN_PROGRESS,
     HAS_CASHED_OUT,
-    prizesPerBracket
+    prizesPerBracket,
+    FIFTY_FIFTY
 } from "../utils/gameLogic";
+import { randomElemFromArray } from "../helpers/helpers_general";
 
 const categories = (state = [], action) => {
     switch (action.type) {
@@ -19,6 +27,8 @@ const categories = (state = [], action) => {
 };
 
 const gameState = (state = initialGameState, action) => {
+    const { questions, currentQuestionNum, stateOfGame } = state;
+
     switch (action.type) {
         case START_GAME:
             return {
@@ -27,14 +37,13 @@ const gameState = (state = initialGameState, action) => {
                 stateOfGame: IN_PROGRESS
             };
         case SUBMIT_GUESS:
-            let [questions, currentQuestionNum] = state;
             const isOnLastQuestion =
                 questions.length === currentQuestionNum + 1;
             const isCorrect =
                 questions[currentQuestionNum].correct_answer === action.guess;
 
             // Some extra protection against muh wannabe hacker console script kiddies
-            if (state.stateOfGame !== IN_PROGRESS) {
+            if (stateOfGame !== IN_PROGRESS) {
                 return state;
             }
 
@@ -43,11 +52,26 @@ const gameState = (state = initialGameState, action) => {
             } else if (isCorrect && isOnLastQuestion) {
                 return { ...state, stateOfGame: HAS_BECOME_A_MILLIONAIRE };
             } else {
-                return { ...state, currentQuestionNum: currentQuestionNum++ };
+                return { ...state, currentQuestionNum: currentQuestionNum + 1 };
             }
         case CASH_OUT:
-            if (state.stateOfGame === IN_PROGRESS && state.currentQuestionNum >= prizesPerBracket) {
+            if (
+                stateOfGame === IN_PROGRESS &&
+                currentQuestionNum >= prizesPerBracket
+            ) {
                 return { ...state, stateOfGame: HAS_CASHED_OUT };
+            }
+
+            return state;
+        case USE_LIFELINE:
+            const question = questions[currentQuestionNum];
+            if (action.lifeline === FIFTY_FIFTY && !question.halvedAnswers) {
+                const halvedAnswers = [
+                    question.correctAnswer,
+                    randomElemFromArray(question.incorrectAnswers)
+                ].sort();
+
+                // return new state
             }
         default:
             return state;
