@@ -15,7 +15,7 @@ import {
     prizesPerBracket,
     FIFTY_FIFTY
 } from "../utils/gameLogic";
-import { randomElemFromArray } from "../helpers/helpers_general";
+import { randomElemFromArray } from "../utils/general";
 
 const categories = (state = [], action) => {
     switch (action.type) {

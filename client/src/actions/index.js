@@ -1,4 +1,5 @@
-import { getQuestions, getCategories } from "../helpers/helpers_api";
+import { getQuestions, getCategories } from "../utils/api";
+
 
 // Actions constants
 export const SET_CATEGORIES = "SET_CATEGORIES";
