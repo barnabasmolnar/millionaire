@@ -13,7 +13,9 @@ import {
     IN_PROGRESS,
     HAS_CASHED_OUT,
     prizesPerBracket,
-    FIFTY_FIFTY
+    FIFTY_FIFTY,
+    fiftyFiftiesUsed,
+    MAX_FIFTY_FIFTIES
 } from "../utils/gameLogic";
 import { randomElemFromArray } from "../utils/general";
 
@@ -65,13 +67,25 @@ const gameState = (state = initialGameState, action) => {
             return state;
         case USE_LIFELINE:
             const question = questions[currentQuestionNum];
-            if (action.lifeline === FIFTY_FIFTY && !question.halvedAnswers) {
+            if (
+                action.lifeline === FIFTY_FIFTY &&
+                !question.halvedAnswers &&
+                fiftyFiftiesUsed(questions) < MAX_FIFTY_FIFTIES
+            ) {
                 const halvedAnswers = [
                     question.correctAnswer,
                     randomElemFromArray(question.incorrectAnswers)
                 ].sort();
 
-                // return new state
+                const questionWithHalvedAnswers = {
+                    ...question,
+                    halvedAnswers
+                };
+
+                const newQuestions = questions.slice();
+                newQuestions[currentQuestionNum] = questionWithHalvedAnswers;
+
+                return { ...state, questions: newQuestions };
             }
         default:
             return state;

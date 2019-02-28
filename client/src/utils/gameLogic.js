@@ -45,12 +45,25 @@ export const calculatePrize = (questionNum, stateOfGame) => {
             return prizePool[questionNum - 1];
         case HAS_GUESSED_WRONG:
             // some modular arithmetic to help determine the correct guaranteed prize
-            const prizeIdx = Math.floor(questionNum / prizesPerBracket) * prizesPerBracket - 1;
+            const prizeIdx =
+                Math.floor(questionNum / prizesPerBracket) * prizesPerBracket -
+                1;
             return prizeIdx === -1 ? 0 : prizePool[prizeIdx];
         default:
             return 0;
     }
-}
+};
 
 // Lifeline constants
 export const FIFTY_FIFTY = "FIFTY_FIFTY";
+
+// Max number of fifty fifties that can be used**
+export const MAX_FIFTY_FIFTIES = 3;
+
+// A function that tells us how many fifty fifties have been used
+export const fiftyFiftiesUsed = questions =>
+    questions.reduce((n, question) => (question.halvedAnswes ? n + 1 : n), 0);
+
+// ** For now 3 fifty fifties can be used
+//    The full lifelines logic will be implemented once we have a working server
+//    with the audience polling option being operational
