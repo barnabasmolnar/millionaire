@@ -2,6 +2,7 @@ POCs/node_modules
 POCs/dist
 POCs/.cache
 api-request
+client/src/index.css
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
