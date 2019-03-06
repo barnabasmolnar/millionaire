@@ -1,9 +1,13 @@
 // Keeping track of what state the game is in at any one time
-export const YET_TO_START = "YET_TO_START";
+export const YET_TO_START = "YET_TO_START"; // *[1]
+export const READY_TO_START = "READY_TO_START"; // *[2]
 export const IN_PROGRESS = "IN_PROGRESS";
 export const HAS_GUESSED_WRONG = "HAS_GUESSED_WRONG";
 export const HAS_CASHED_OUT = "HAS_CASHED_OUT";
 export const HAS_BECOME_A_MILLIONAIRE = "HAS_BECOME_A_MILLIONAIRE";
+
+// *[1] - Nothing's been really done here yet
+// *[2] - Categories have been fetched, player can select categ and start game now
 
 // New game state
 export const initialGameState = {

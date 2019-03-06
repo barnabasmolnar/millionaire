@@ -15,7 +15,9 @@ import {
     prizesPerBracket,
     FIFTY_FIFTY,
     fiftyFiftiesUsed,
-    MAX_FIFTY_FIFTIES
+    MAX_FIFTY_FIFTIES,
+    READY_TO_START,
+    YET_TO_START
 } from "../utils/gameLogic";
 import { randomElemFromArray } from "../utils/general";
 
@@ -32,6 +34,14 @@ const gameState = (state = initialGameState, action) => {
     const { questions, currentQuestionNum, stateOfGame } = state;
 
     switch (action.type) {
+        case SET_CATEGORIES:
+            if (state.stateOfGame === YET_TO_START) {
+                return {
+                    ...initialGameState,
+                    stateOfGame: READY_TO_START
+                };
+            }
+            return state;
         case START_GAME:
             return {
                 ...initialGameState,
