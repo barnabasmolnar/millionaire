@@ -1,3 +1,40 @@
 @tailwind preflight;
 @tailwind components;
+
+.btn {
+    @apply font-bold p-4 rounded;
+    @apply cursor-pointer;
+}
+
+.btn-grey {
+    @apply bg-grey;
+    @apply text-black;
+}
+
+.btn-grey:hover {
+    @apply bg-grey-darkest;
+    @apply text-grey-lightest;
+}
+
+.btn-grey-light {
+    @apply bg-grey-light;
+    @apply text-black;
+}
+
+.btn-grey-light:not(:disabled):hover {
+    @apply bg-grey;
+}
+
 @tailwind utilities;
+
+input[name="answer"] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+input[name="answer"]:checked~label {
+    @apply shadow-outline;
+    @apply bg-grey-darkest;
+    @apply text-grey-lightest;
+}

@@ -21,7 +21,6 @@ const renderViewBasedOnState = props => {
 const App = props => <div>{renderViewBasedOnState(props)}</div>;
 
 const mapStateToProps = state => ({
-    categories: state.categories,
     stateOfGame: state.gameState.stateOfGame
 });
 

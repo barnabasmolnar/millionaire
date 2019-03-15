@@ -52,7 +52,7 @@ const gameState = (state = initialGameState, action) => {
             const isOnLastQuestion =
                 questions.length === currentQuestionNum + 1;
             const isCorrect =
-                questions[currentQuestionNum].correct_answer === action.guess;
+                questions[currentQuestionNum].correctAnswer === action.guess;
 
             // Some extra protection against muh wannabe hacker console script kiddies
             if (stateOfGame !== IN_PROGRESS) {
