@@ -66,7 +66,7 @@ export const MAX_FIFTY_FIFTIES = 3;
 
 // A function that tells us how many fifty fifties have been used
 export const fiftyFiftiesUsed = questions =>
-    questions.reduce((n, question) => (question.halvedAnswes ? n + 1 : n), 0);
+    questions.reduce((n, question) => (question.halvedAnswers ? n + 1 : n), 0);
 
 // ** For now 3 fifty fifties can be used
 //    The full lifelines logic will be implemented once we have a working server

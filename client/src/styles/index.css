@@ -20,6 +20,10 @@
     @apply bg-grey-light;
     @apply text-black;
 }
+.btn-grey-light:disabled {
+    @apply cursor-not-allowed;
+    @apply opacity-50;
+}
 
 .btn-grey-light:not(:disabled):hover {
     @apply bg-grey;
@@ -37,4 +41,9 @@ input[name="answer"]:checked~label {
     @apply shadow-outline;
     @apply bg-grey-darkest;
     @apply text-grey-lightest;
+}
+
+input[name="answer"]:disabled~label {
+    @apply bg-red-lighter;
+    @apply pointer-events-none;
 }
