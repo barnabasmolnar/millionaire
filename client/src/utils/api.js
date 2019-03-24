@@ -16,7 +16,8 @@ const opentdbConfig = {
     difficulties: ["easy", "medium", "hard"],
     questionPerDifficulty: 5,
     typeOfQuestion: "multiple",
-    catStr: "&category="
+    catStr: "&category=",
+    encoding: "base64"
 };
 
 // ========================================
@@ -28,14 +29,15 @@ function getURLs(category = null, config = opentdbConfig) {
         difficulties,
         questionPerDifficulty,
         typeOfQuestion,
-        catStr
+        catStr,
+        encoding
     } = config;
 
     return difficulties.map(
         difficulty =>
             `${baseUrl}?amount=${questionPerDifficulty}${
                 category !== null ? catStr + category : ""
-            }&difficulty=${difficulty}&type=${typeOfQuestion}`
+            }&difficulty=${difficulty}&type=${typeOfQuestion}&encode=${encoding}`
     );
 }
 
@@ -50,15 +52,19 @@ function extractRelevantData({ response_code, results }) {
         ? Promise.reject(
               "There aren't enough questions for this category, sorry. :("
           )
-        : results.map(questionObj => ({
-              question: questionObj.question,
-              correctAnswer: questionObj.correct_answer,
-              incorrectAnswers: questionObj.incorrect_answers,
-              sortedAnswers: [
-                  questionObj.correct_answer,
-                  ...questionObj.incorrect_answers
-              ].sort()
-          }));
+        : results.map(({ question, correct_answer, incorrect_answers }) => {
+              // this atob fuckery is necessary because the api returns
+              // questions and answers with some silly encoding by default
+              const correctAnswer = atob(correct_answer);
+              const incorrectAnswers = incorrect_answers.map(atob);
+
+              return {
+                  question: atob(question),
+                  correctAnswer,
+                  incorrectAnswers,
+                  sortedAnswers: [correctAnswer, ...incorrectAnswers].sort()
+              };
+          });
 }
 
 // =======================================
